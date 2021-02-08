@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import knex from 'knex';
 import KnexConfig from '../../../../knexfile';
 

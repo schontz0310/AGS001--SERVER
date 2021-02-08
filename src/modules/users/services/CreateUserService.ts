@@ -33,7 +33,6 @@ class CreateUserService {
     const checkEmailExist = await this.usersRepository.findByEmail(users_email);
 
     if (checkEmailExist) {
-      console.log('aqui');
       throw new AppError('email already in use', 401);
     }
 

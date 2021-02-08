@@ -1,50 +1,47 @@
 import connection from '@shared/infra/knex/index';
-import IUser from '@modules/users/infra/knex/entities/IUser';
-import IUsersRepository from '../../../repositories/IUsersRepository';
-import ICreateUserDTO from '../../../dtos/ICreateUserDTO';
+import IMasterUser from '@modules/users/infra/knex/entities/IMasterUser';
+import IMasterUsersRepository from '../../../repositories/IMasterUsersRepository';
+import ICreateMasterUserDTO from '../../../dtos/ICreateMasterUserDTO';
 
-class UsersRepository implements IUsersRepository {
+class UsersRepository implements IMasterUsersRepository {
   public async create({
-    users_company,
     users_name,
     users_email,
     users_password,
-  }: ICreateUserDTO): Promise<IUser> {
+  }: ICreateMasterUserDTO): Promise<IMasterUser> {
     const [user] = await connection('users')
       .insert({
         users_email,
         users_name,
-        users_company,
         users_password,
       })
-      .returning<IUser[]>('*');
+      .returning<IMasterUser[]>('*');
     return user;
   }
 
-  public async findByEmail(email: string): Promise<IUser | undefined> {
-    const [user] = await connection('users')
+  public async findByEmail(email: string): Promise<IMasterUser | undefined> {
+    const [user] = await connection('admin_users')
       .select('*')
-      .where<IUser[]>('users_email', email);
+      .where<IMasterUser[]>('users_email', email);
+    console.log(user);
     return user;
   }
 
-  public async findById(id: string): Promise<IUser | undefined> {
+  public async findById(id: string): Promise<IMasterUser | undefined> {
     console.log(id);
     return undefined;
   }
 
   public async save({
-    users_company,
     users_name,
     users_email,
     users_password,
     users_id,
-  }: IUser): Promise<IUser | undefined> {
+  }: IMasterUser): Promise<IMasterUser | undefined> {
     const user = await connection('users')
       .returning('*')
       .where({ users_id })
       .update({
-        users_company,
         users_name,
         users_email,
         users_password,
