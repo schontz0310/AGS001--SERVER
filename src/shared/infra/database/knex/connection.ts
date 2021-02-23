@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import knex from 'knex';
-import KnexConfig from '../../../../knexfile';
+import KnexConfig from './knexfile';
 
 const connection = knex(KnexConfig.development);
 

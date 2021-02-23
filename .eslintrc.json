@@ -7,8 +7,6 @@
   "extends": [
       "airbnb-base",
       "plugin:@typescript-eslint/recommended",
-      "eslint:recommended",
-      "plugin:@typescript-eslint/eslint-recommended",
       "prettier/@typescript-eslint",
       "plugin:prettier/recommended"
   ],
@@ -30,25 +28,29 @@
       "error",
       {
         "selector": "interface",
-        "prefix": ["I"],
-        "format": ["PascalCase"]
+        "format": ["PascalCase"],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
       }
     ],
     "@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "_" }],
-    "no-unused-vars": ["error", {"argsIgnorePattern": "_" }],
     "no-underscore-dangle": "off",
     "prettier/prettier": "error",
     "class-methods-use-this":"off",
     "camelcase":"off",
     "@typescript-eslint/camelcase": ["off"],
     "no-useless-constructor":"off",
-    "import/extensions": [
-      "error",
-      "ignorePackages",
-      {
-        "ts": "never"
-      }
-    ]
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "settings": {
     "import/resolver": {

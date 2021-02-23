@@ -1,4 +1,4 @@
-import connection from '@shared/infra/knex/index';
+import connection from '@shared/infra/database/knex/connection';
 import IUser from '@modules/users/infra/knex/entities/IUser';
 import IUsersRepository from '../../../repositories/IUsersRepository';
 import ICreateUserDTO from '../../../dtos/ICreateUserDTO';

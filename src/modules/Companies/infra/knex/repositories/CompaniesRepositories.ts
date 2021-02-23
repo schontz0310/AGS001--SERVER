@@ -1,4 +1,4 @@
-import connection from '@shared/infra/knex/index';
+import connection from '@shared/infra/database/knex/connection';
 import ICompany from '@modules/Companies/infra/knex/entities/ICompany';
 import IAdress from '@modules/Adress/infra/knex/entities/IAdress';
 import ICompaniesRepository from '../../../repositories/ICompaniesRepository';

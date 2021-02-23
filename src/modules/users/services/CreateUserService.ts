@@ -2,7 +2,6 @@ import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
-// import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import IUser from '@modules/users/infra/knex/entities/IUser';
 
@@ -19,9 +18,7 @@ class CreateUserService {
     private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
-    private hashProvider: IHashProvider /*
-    @inject('CacheProvider')
-    private cacheProvider: ICacheProvider, */,
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({
@@ -36,7 +33,8 @@ class CreateUserService {
       throw new AppError('email already in use', 401);
     }
 
-    // Rule of Crypto password
+    const checkCompanyExist = await this.companiesRepository.CheckExist();
+
     const hashedPassword = await this.hashProvider.generateHash(users_password);
 
     const user = await this.usersRepository.create({

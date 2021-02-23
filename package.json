@@ -4,10 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "knex:Mrun": "knex migrate:latest --knexfile src/shared/infra/database/knex/knexfile.ts migrate:latest",
+    "knex:Mcreate": "knex migrate:make --knexfile src/shared/infra/database/knex/knexfile.ts",
+    "knex:Smake": "knex seed:make --knexfile src/shared/infra/database/knex/knexfile.ts",
+    "knex:Srun": "knex seed:run --knexfile src/shared/infra/database/knex/knexfile.ts",
     "build": "tsc",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.9",
     "@types/jsonwebtoken": "^8.5.0",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.0",

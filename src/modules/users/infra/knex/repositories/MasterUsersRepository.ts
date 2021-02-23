@@ -1,4 +1,4 @@
-import connection from '@shared/infra/knex/index';
+import connection from '@shared/infra/database/knex/connection';
 import IMasterUser from '@modules/users/infra/knex/entities/IMasterUser';
 import IMasterUsersRepository from '../../../repositories/IMasterUsersRepository';
 import ICreateMasterUserDTO from '../../../dtos/ICreateMasterUserDTO';
