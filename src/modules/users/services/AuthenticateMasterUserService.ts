@@ -35,7 +35,7 @@ class AuthenticateUserService {
 
     const passwordMatch = await this.hashProvider.compareHash(
       password,
-      user.users_password,
+      user.admin_users_password,
     );
 
     if (!passwordMatch) {
@@ -45,7 +45,7 @@ class AuthenticateUserService {
     const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {
-      subject: user.users_id,
+      subject: user.admin_users_id,
       expiresIn,
     });
 

@@ -5,15 +5,15 @@ import ICreateMasterUserDTO from '../../../dtos/ICreateMasterUserDTO';
 
 class UsersRepository implements IMasterUsersRepository {
   public async create({
-    users_name,
-    users_email,
-    users_password,
+    admin_users_name,
+    admin_users_email,
+    admin_users_password,
   }: ICreateMasterUserDTO): Promise<IMasterUser> {
-    const [user] = await connection('users')
+    const [user] = await connection('admin_users')
       .insert({
-        users_email,
-        users_name,
-        users_password,
+        admin_users_email,
+        admin_users_name,
+        admin_users_password,
       })
       .returning<IMasterUser[]>('*');
     return user;
@@ -22,8 +22,7 @@ class UsersRepository implements IMasterUsersRepository {
   public async findByEmail(email: string): Promise<IMasterUser | undefined> {
     const [user] = await connection('admin_users')
       .select('*')
-      .where<IMasterUser[]>('users_email', email);
-    console.log(user);
+      .where<IMasterUser[]>('admin_users_email', email);
     return user;
   }
 
@@ -33,19 +32,19 @@ class UsersRepository implements IMasterUsersRepository {
   }
 
   public async save({
-    users_name,
-    users_email,
-    users_password,
-    users_id,
+    admin_users_name,
+    admin_users_email,
+    admin_users_password,
+    admin_users_id,
   }: IMasterUser): Promise<IMasterUser | undefined> {
     const user = await connection('users')
       .returning('*')
-      .where({ users_id })
+      .where({ admin_users_id })
       .update({
-        users_name,
-        users_email,
-        users_password,
-        users_id,
+        admin_users_name,
+        admin_users_email,
+        admin_users_password,
+        admin_users_id,
       });
     console.log(user);
     return undefined;

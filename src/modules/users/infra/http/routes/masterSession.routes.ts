@@ -5,6 +5,6 @@ import MasterSessionsController from '@modules/users/infra/http/controllers/Mast
 const sessionsRouter = Router();
 const masterSessionsController = new MasterSessionsController();
 
-sessionsRouter.post('/', masterSessionsController.create);
+sessionsRouter.post('/', masterSessionsController.index);
 
 export default sessionsRouter;

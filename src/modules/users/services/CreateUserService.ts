@@ -33,8 +33,6 @@ class CreateUserService {
       throw new AppError('email already in use', 401);
     }
 
-    const checkCompanyExist = await this.companiesRepository.CheckExist();
-
     const hashedPassword = await this.hashProvider.generateHash(users_password);
 
     const user = await this.usersRepository.create({

@@ -4,7 +4,7 @@ import { container } from 'tsyringe';
 import AuthenticateMasterUserService from '@modules/users/services/AuthenticateMasterUserService';
 
 export default class SessionsController {
-  public async create(request: Request, response: Response): Promise<Response> {
+  public async index(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
     const authenticateUser = container.resolve(AuthenticateMasterUserService);
     const { user, token } = await authenticateUser.execute({
@@ -12,7 +12,9 @@ export default class SessionsController {
       password,
     });
 
-    delete user.users_password;
+    delete user.admin_users_password;
+    delete user.admin_users_created_at;
+    delete user.admin_users_updated_at;
 
     return response.json({ user, token });
   }

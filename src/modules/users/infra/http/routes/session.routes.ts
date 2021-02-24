@@ -5,6 +5,6 @@ import SessionsController from '@modules/users/infra/http/controllers/SessionsCo
 const sessionsRouter = Router();
 const sessionsController = new SessionsController();
 
-sessionsRouter.post('/', sessionsController.create);
+sessionsRouter.post('/', sessionsController.index);
 
 export default sessionsRouter;
