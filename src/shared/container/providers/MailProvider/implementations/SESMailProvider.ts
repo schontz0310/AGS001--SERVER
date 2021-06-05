@@ -1,4 +1,4 @@
-/* import nodemailer, { Transporter } from 'nodemailer';
+import nodemailer, { Transporter } from 'nodemailer';
 import aws from 'aws-sdk';
 import mailConfig from '@config/mail';
 
@@ -46,4 +46,3 @@ export default class SESMailProvider implements IMailProvider {
     });
   }
 }
-*/

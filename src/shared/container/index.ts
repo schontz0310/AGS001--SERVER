@@ -1,28 +1,36 @@
 import { container } from 'tsyringe';
 
-import '@modules/users/providers/index';
 import '@shared/container/providers/index';
 
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import UsersRepository from '@modules/users/infra/knex/repositories/UsersRepository';
+import IUsersRepository from '@modules/Users/repositories/IUsersRepository';
+import UsersRepositoryKnex from '@modules/Users/infra/knex/repositories/UsersRepository';
+import UsersRepositoryTypeOrm from '@modules/Users/infra/typeorm/repositories/UsersRepository';
 
-import IMasterUsersRepository from '@modules/users/repositories/IMasterUsersRepository';
-import MasterUsersRepository from '@modules/users/infra/knex/repositories/MasterUsersRepository';
+import IMasterUsersRepository from '@modules/Users/repositories/IMasterUsersRepository';
+import MasterUsersRepository from '@modules/Users/infra/knex/repositories/MasterUsersRepository';
 
 import ICompaniesRepository from '@modules/Companies/repositories/ICompaniesRepository';
-import CompaniesRepository from '@modules/Companies/infra/knex/repositories/CompaniesRepositories';
+import CompaniesRepositoryKnex from '@modules/Companies/infra/knex/repositories/CompaniesRepositories';
+import CompaniesRepositoryTypeOrm from '@modules/Companies/infra/typeorm/repositories/CompaniesRepository';
 
-container.registerSingleton<IUsersRepository>(
-  'UsersRepository',
-  UsersRepository,
-);
+const users = {
+  Knex: UsersRepositoryKnex,
+  TypeOrm: UsersRepositoryTypeOrm,
+};
+
+container.registerSingleton<IUsersRepository>('UsersRepository', users.TypeOrm);
 
 container.registerSingleton<IMasterUsersRepository>(
   'MasterUsersRepository',
   MasterUsersRepository,
 );
 
+const repositories = {
+  knex: CompaniesRepositoryKnex,
+  typeOrm: CompaniesRepositoryTypeOrm,
+};
+
 container.registerSingleton<ICompaniesRepository>(
   'CompaniesRepository',
-  CompaniesRepository,
+  repositories.typeOrm,
 );

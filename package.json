@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "knex:Mrun": "knex migrate:latest --knexfile src/shared/infra/database/knex/knexfile.ts migrate:latest",
     "knex:Mcreate": "knex migrate:make --knexfile src/shared/infra/database/knex/knexfile.ts",
     "knex:Smake": "knex seed:make --knexfile src/shared/infra/database/knex/knexfile.ts",
@@ -13,10 +14,13 @@
   },
   "devDependencies": {
     "@types/cors": "^2.8.9",
+    "@types/jest": "^26.0.23",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/nodemailer": "^6.4.2",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
+    "class-transformer": "^0.4.0",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.2.0",
@@ -35,15 +39,21 @@
     "aws-sdk": "^2.829.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
+    "celebrate": "^14.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
+    "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.16",
     "mime": "^2.5.0",
     "multer": "^1.4.2",
+    "nodemailer": "^6.6.1",
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
-    "tsyringe": "^4.4.0"
+    "tsyringe": "^4.4.0",
+    "typeorm": "^0.2.32",
+    "typeorm-transactional-cls-hooked": "^0.1.21"
   }
 }

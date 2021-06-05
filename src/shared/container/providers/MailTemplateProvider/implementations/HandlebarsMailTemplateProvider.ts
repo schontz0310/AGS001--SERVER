@@ -1,4 +1,4 @@
-/* import handlebars from 'handlebars';
+import handlebars from 'handlebars';
 import fs from 'fs';
 
 import IParseMailTemplateDTO from '@shared/container/providers/MailTemplateProvider/dtos/IParseMailTemplateDTO';
@@ -18,4 +18,3 @@ class HandlebarsMailTemplateProvider implements IMailTemplateProvider {
 }
 
 export default HandlebarsMailTemplateProvider;
-*/

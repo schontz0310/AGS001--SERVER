@@ -1,6 +1,11 @@
 {
   "cSpell.words": [
+    "Equipe",
+    "Etherial",
     "postgres",
-    "postgresql"
+    "postgresql",
+    "tsyringe",
+    "typeorm",
+    "varchar"
   ]
 }

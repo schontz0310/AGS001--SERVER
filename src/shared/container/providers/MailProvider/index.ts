@@ -1,4 +1,4 @@
-/* import { container } from 'tsyringe';
+import { container } from 'tsyringe';
 
 import mailConfig from '@config/mail';
 
@@ -11,9 +11,7 @@ const providers = {
   ethereal: container.resolve(EtherealMailProvider),
   ses: container.resolve(SESMailProvider),
 };
-
 container.registerInstance<IMailProvider>(
   'MailProvider',
   providers[mailConfig.driver],
 );
-*/

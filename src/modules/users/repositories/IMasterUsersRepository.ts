@@ -1,4 +1,4 @@
-import IMasterUser from '@modules/users/infra/knex/entities/IMasterUser';
+import IMasterUser from '@modules/Users/infra/knex/entities/IMasterUser';
 import ICreateMasterUserDTO from '../dtos/ICreateMasterUserDTO';
 
 export default interface IMasterUsersRepository {

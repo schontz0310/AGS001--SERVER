@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
-import IMasterUsersRepository from '@modules/users/repositories/IMasterUsersRepository';
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+import IMasterUsersRepository from '@modules/Users/repositories/IMasterUsersRepository';
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 
-import IMasterUser from '@modules/users/infra/knex/entities/IMasterUser';
+import IMasterUser from '@modules/Users/infra/knex/entities/IMasterUser';
 
 interface IRequest {
   admin_users_name: string;

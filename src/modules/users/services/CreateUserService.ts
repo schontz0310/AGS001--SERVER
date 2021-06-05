@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
+import IUsersRepository from '@modules/Users/repositories/IUsersRepository';
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 
-import IUser from '@modules/users/infra/knex/entities/IUser';
+import IUser from '@modules/Users/infra/knex/entities/IUser';
 
 interface IRequest {
   users_name: string;

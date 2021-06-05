@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreateMasterUserService from '@modules/users/services/CreateMasterUserService';
+import CreateMasterUserService from '@modules/Users/services/CreateMasterUserService';
 
 interface ICreateMasterUser {
   admin_users_name: string;

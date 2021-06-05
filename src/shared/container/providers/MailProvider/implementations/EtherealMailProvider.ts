@@ -1,4 +1,5 @@
-/* import nodemailer, { Transporter } from 'nodemailer';
+/* eslint-disable no-console */
+import nodemailer, { Transporter } from 'nodemailer';
 import { inject, injectable } from 'tsyringe';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import ISendMailDTO from '@shared/container/providers/MailProvider/dtos/ISendMailDTO';
@@ -36,8 +37,8 @@ export default class EtherialMailProvider implements IMailProvider {
   }: ISendMailDTO): Promise<void> {
     const message = await this.client.sendMail({
       from: {
-        name: from?.name || 'Equipe GoBarber',
-        address: from?.email || 'equipe@gobarber.com.br',
+        name: from?.name || 'Equipe Agility in Solutions',
+        address: from?.email || 'equipe@agilityinsolutions.com',
       },
 
       to: {
@@ -52,4 +53,3 @@ export default class EtherialMailProvider implements IMailProvider {
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(message));
   }
 }
-*/

@@ -1,7 +1,7 @@
 import connection from '@shared/infra/database/knex/connection';
-import IUser from '@modules/users/infra/knex/entities/IUser';
 import IUsersRepository from '../../../repositories/IUsersRepository';
 import ICreateUserDTO from '../../../dtos/ICreateUserDTO';
+import User from '../../typeorm/entities/User';
 
 class UsersRepository implements IUsersRepository {
   public async create({
@@ -9,7 +9,7 @@ class UsersRepository implements IUsersRepository {
     users_name,
     users_email,
     users_password,
-  }: ICreateUserDTO): Promise<IUser> {
+  }: ICreateUserDTO): Promise<User> {
     const [user] = await connection('users')
       .insert({
         users_email,
@@ -17,38 +17,38 @@ class UsersRepository implements IUsersRepository {
         users_company,
         users_password,
       })
-      .returning<IUser[]>('*');
+      .returning<User[]>('*');
     return user;
   }
 
-  public async findByEmail(email: string): Promise<IUser | undefined> {
+  public async findByEmail(email: string): Promise<User | undefined> {
     const [user] = await connection('users')
       .select('*')
-      .where<IUser[]>('users_email', email);
+      .where<User[]>('users_email', email);
     return user;
   }
 
-  public async findById(id: string): Promise<IUser | undefined> {
+  public async findById(id: string): Promise<User | undefined> {
     console.log(id);
     return undefined;
   }
 
   public async save({
-    users_company,
-    users_name,
-    users_email,
-    users_password,
-    users_id,
-  }: IUser): Promise<IUser | undefined> {
+    company,
+    name,
+    email,
+    password,
+    id,
+  }: User): Promise<User | undefined> {
     const user = await connection('users')
       .returning('*')
-      .where({ users_id })
+      .where({ user_id: id })
       .update({
-        users_company,
-        users_name,
-        users_email,
-        users_password,
-        users_id,
+        user_company: company,
+        user_name: name,
+        user_email: email,
+        user_password: password,
+        user_id: id,
       });
     console.log(user);
     return undefined;
