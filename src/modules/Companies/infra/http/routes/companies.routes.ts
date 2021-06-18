@@ -3,8 +3,8 @@ import { Router } from 'express';
 import CompaniesController from '@modules/Companies/infra/http/controllers/CompaniesController';
 
 const companiesRouter = Router();
-const comapniesController = new CompaniesController();
+const companiesController = new CompaniesController();
 
-companiesRouter.post('/', comapniesController.create);
+companiesRouter.post('/', companiesController.create);
 
 export default companiesRouter;
