@@ -109,6 +109,7 @@ class Company {
   }
 
   public isCNPJOrCPF(value: string ): string {
+    console.log(value)
     return value;
   }
 }
