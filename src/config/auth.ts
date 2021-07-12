@@ -7,5 +7,6 @@ export default {
   masterSecret: {
     secret: process.env.MASTER_JWT_SECRET || 'MasterSecret',
     expiresIn: process.env.APP_JWT_EXPIRES_IN || '1d',
+    passwordCreator: process.env.MASTER_PASS_CREATOR || 'MasterCreator',
   },
 };
