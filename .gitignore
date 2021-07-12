@@ -3,3 +3,5 @@ knexfile.ts
 .env
 ormconfig.json
 .vscode
+yarn-error.log
+yarn.lock

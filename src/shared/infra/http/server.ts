@@ -12,7 +12,7 @@ import AppError from '@shared/errors/AppError';
 
 import routes from '@shared/infra/http/routes';
 
-import '@shared/infra/typeorm';
+import '@shared/infra/database/typeorm';
 import '@shared/container';
 
 initializeTransactionalContext();
