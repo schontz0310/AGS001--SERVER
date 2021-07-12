@@ -107,5 +107,9 @@ class Company {
     const type_value_converted = this.type_value.replace(/\D/gim, '');
     return type_value_converted;
   }
+
+  public isCNPJOrCPF(value: string ): string {
+    return value;
+  }
 }
 export default Company;
