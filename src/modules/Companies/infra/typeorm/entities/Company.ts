@@ -102,10 +102,5 @@ class Company {
     name: 'company_updated_at',
   })
   updated_at: Date;
-
-  public formattedCNPJ(): string {
-    const type_value_converted = this.type_value.replace(/\D/gim, '');
-    return type_value_converted;
-  }
 }
 export default Company;
