@@ -1,41 +1,46 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class createMasterUsersTable1626006361622
+export default class createDevicesTable1628560295503
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'users_master',
+        name: 'devices',
         columns: [
           {
-            name: 'admin_users_id',
+            name: 'device_id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'admin_users_name',
-            type: 'varchar',
+            name: 'device_code',
+            type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'admin_users_email',
-            type: 'varchar',
+            name: 'device_model',
+            type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'admin_users_password',
-            type: 'varchar',
+            name: 'device_variant',
+            type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'admin_users_created_at',
+            name: 'device_status',
+            type: 'varchar(50)',
+            isNullable: false,
+          },
+          {
+            name: 'device_created_at',
             type: 'timestamp',
             default: 'now()',
           },
           {
-            name: 'admin_users_updated_at',
+            name: 'device_updated_at',
             type: 'timestamp',
             default: 'now()',
           },
@@ -46,6 +51,6 @@ export default class createMasterUsersTable1626006361622
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users_master');
+    await queryRunner.dropTable('devices');
   }
 }
