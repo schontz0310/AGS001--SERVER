@@ -17,9 +17,10 @@ class CompaniesRepository implements ICompanyRepository {
   }
 
   public async CheckExist(type_value: string): Promise<Company | undefined> {
+    const formattedValue = type_value.replace(/[^0-9]+/g, '');
     const company = await this.ormRepository.findOne({
       where: {
-        type_value,
+        type_value: formattedValue,
       },
     });
     return company;

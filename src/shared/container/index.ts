@@ -11,6 +11,9 @@ import MasterUsersRepository from '@modules/Users/infra/typeorm/repositories/Mas
 import ICompaniesRepository from '@modules/Companies/repositories/ICompaniesRepository';
 import CompaniesRepositoryTypeOrm from '@modules/Companies/infra/typeorm/repositories/CompaniesRepository';
 
+import IDevicesRepository from '@modules/Devices/repositories/IDeviceRepository';
+import DevicesRepositoryTypeOrm from '@modules/Devices/infra/typeorm/repositories/DevicesRepository';
+
 const users = {
   TypeOrm: UsersRepositoryTypeOrm,
 };
@@ -23,10 +26,16 @@ container.registerSingleton<IMasterUsersRepository>(
 );
 
 const repositories = {
-  typeOrm: CompaniesRepositoryTypeOrm,
+  companyTypeOrm: CompaniesRepositoryTypeOrm,
+  deviceTypeOrm: DevicesRepositoryTypeOrm,
 };
 
 container.registerSingleton<ICompaniesRepository>(
   'CompaniesRepository',
-  repositories.typeOrm,
+  repositories.companyTypeOrm,
+);
+
+container.registerSingleton<IDevicesRepository>(
+  'DevicesRepository',
+  repositories.deviceTypeOrm,
 );

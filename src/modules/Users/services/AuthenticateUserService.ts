@@ -11,6 +11,7 @@ import User from '../infra/typeorm/entities/User';
 interface IRequest {
   email: string;
   password: string;
+  company_type: string;
   company_type_value: string;
 }
 
@@ -37,10 +38,18 @@ class AuthenticateUserService {
     password,
     company_type_value,
   }: IRequest): Promise<IResponse> {
-    // Application Rule - Check if first login user
-    const user = await this.usersRepository.findByEmail(email);
+    const company = await this.companiesRepository.CheckExist(
+      company_type_value,
+    );
+    if (!company) {
+      throw new AppError('Incorrect company/email/password combination!', 401);
+    }
+    const user = await this.usersRepository.findByEmailAndCompany(
+      email,
+      company.id,
+    );
     if (!user) {
-      throw new AppError('Incorrect email/password combination!', 401);
+      throw new AppError('Incorrect company/email/password combination!', 401);
     }
 
     const passwordMatch = await this.hashProvider.compareHash(
@@ -49,16 +58,8 @@ class AuthenticateUserService {
     );
 
     if (!passwordMatch) {
-      throw new AppError('Incorrect email/password combination!', 401);
+      throw new AppError('Incorrect company/email/password combination!', 401);
     }
-
-    const checkCompanyExist = await this.companiesRepository.CheckExist(
-      company_type_value,
-    );
-    if (!checkCompanyExist) {
-      throw new AppError('Company Problem!', 401);
-    }
-
     const { secret, expiresIn } = authConfig.jwt;
 
     const token = sign({}, secret, {

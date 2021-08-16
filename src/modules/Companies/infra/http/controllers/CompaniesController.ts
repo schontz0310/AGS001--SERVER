@@ -7,11 +7,8 @@ import ICreateCompaniesDTO from '@modules/Companies/dtos/ICreateCompaniesDTO';
 import Company from '../../typeorm/entities/Company';
 
 export default class CompanyController {
-  public async create(
-    request: Request<unknown, unknown, ICreateCompaniesDTO>,
-    response: Response<Company>,
-  ): Promise<Response<Company>> {
-    const createCompanyData = request.body;
+  public async create(request: Request, response: Response): Promise<Response> {
+    const createCompanyData: ICreateCompaniesDTO = request.body;
     const createCompany = container.resolve(CreatCompanyService);
     const company = await createCompany.execute(createCompanyData);
     return response.json(classToClass(company));

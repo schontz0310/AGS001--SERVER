@@ -12,6 +12,7 @@ sessionsRouter.post(
     [Segments.BODY]: Joi.object().keys({
       email: Joi.string().email().required(),
       password: Joi.string().min(8).required(),
+      company_type: Joi.string().min(3).max(4).required(),
       company_type_value: Joi.string().min(14).max(18).required(),
     }),
   }),
