@@ -3,6 +3,7 @@ import { container } from 'tsyringe';
 
 import CreateMasterUserService from '@modules/Users/services/CreateMasterUserService';
 import { classToClass } from 'class-transformer';
+import UserMaster from '../../typeorm/entities/UserMaster';
 
 interface CreateMasterUser {
   name: string;
