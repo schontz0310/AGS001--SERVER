@@ -38,7 +38,7 @@ class AuthenticateUserService {
     password,
     company_type_value,
   }: IRequest): Promise<IResponse> {
-    const company = await this.companiesRepository.CheckExist(
+    const company = await this.companiesRepository.checkExist(
       company_type_value,
     );
     if (!company) {

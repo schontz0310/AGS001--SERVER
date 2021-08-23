@@ -8,42 +8,42 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('devices')
-class Device {
+@Entity('vehicle')
+class Company {
   @PrimaryGeneratedColumn('uuid')
   @PrimaryColumn({
-    name: 'device_id',
+    name: 'vehicle_id',
   })
   id: string;
 
   @Column({
-    name: 'device_code',
+    name: 'vehicle_code',
   })
   code: string;
 
   @Column({
-    name: 'device_model',
+    name: 'vehicle_model',
   })
   model: string;
 
   @Column({
-    name: 'device_variant',
+    name: 'vehicle_variant',
   })
   variant: string;
 
   @Column({
-    name: 'device_status',
+    name: 'vehicle_status',
   })
   status: string;
 
   @CreateDateColumn({
-    name: 'device_created_at',
+    name: 'vehicle_created_at',
   })
   created_at: Date;
 
   @CreateDateColumn({
-    name: 'device_updated_at',
+    name: 'vehicle_updated_at',
   })
   updated_at: Date;
 }
-export default Device;
+export default Company;

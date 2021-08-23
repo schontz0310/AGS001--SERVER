@@ -16,13 +16,23 @@ class CompaniesRepository implements ICompanyRepository {
     return company;
   }
 
-  public async CheckExist(type_value: string): Promise<Company | undefined> {
+  public async checkExist(type_value: string): Promise<Company | undefined> {
     const formattedValue = type_value.replace(/[^0-9]+/g, '');
     const company = await this.ormRepository.findOne({
       where: {
         type_value: formattedValue,
       },
     });
+    return company;
+  }
+
+  public async findAll(): Promise<Company[]> {
+    const companies = await this.ormRepository.find();
+    return companies;
+  }
+
+  public async findById(id: string): Promise<Company | undefined> {
+    const company = await this.ormRepository.findOne(id);
     return company;
   }
 }

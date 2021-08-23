@@ -14,7 +14,7 @@ routes.use('/sessions/master', masterSessionsRouter);
 
 routes.use('/users', usersRouter);
 
-routes.use('/users/master', masterRouter);
+routes.use('/masters', masterRouter);
 routes.use('/companies', companiesRouter);
 routes.use('/devices', devicesRouter);
 
