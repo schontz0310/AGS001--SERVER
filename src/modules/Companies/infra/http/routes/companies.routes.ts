@@ -5,10 +5,12 @@ import masterEnsureAuthenticated from '@shared/infra/http/middlewares/masterEnsu
 
 const companiesRouter = Router();
 
-companiesRouter.use(masterEnsureAuthenticated)
+companiesRouter.use(masterEnsureAuthenticated);
 
 const companiesController = new CompaniesController();
 
 companiesRouter.post('/', companiesController.create);
+companiesRouter.post('/assign-device', companiesController.assign);
+companiesRouter.get('/', companiesController.findAll);
 
 export default companiesRouter;

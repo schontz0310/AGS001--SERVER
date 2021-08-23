@@ -1,3 +1,5 @@
+import Device from '@modules/Devices/infra/typeorm/entities/Devices';
+
 export default interface ICreateCompaniesDTO {
   name: string;
   type: string;
@@ -8,10 +10,12 @@ export default interface ICreateCompaniesDTO {
   address_district: string;
   address_state: string;
   address_city: string;
-  zip_code: string;
+  address_zip_code: string;
   contact: string;
   phone: string;
   user: string;
   email: string;
   password: string;
+  devices?: Device[];
+  company_id?: string;
 }

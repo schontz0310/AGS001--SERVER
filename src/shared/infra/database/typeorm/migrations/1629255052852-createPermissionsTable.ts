@@ -1,96 +1,75 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class createAppointmentsTable1626396156438
+export default class createPermissionsTable1629255052852
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'appointments',
+        name: 'permissions',
         columns: [
           {
-            name: 'appointment_id',
+            name: 'permission_appointment_id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'appointment_code',
+            name: 'permission_appointment_code',
             type: 'smallint',
             isNullable: false,
           },
           {
-            name: 'appointment_date',
+            name: 'permission_appointment_date',
             type: 'date',
             isNullable: false,
           },
           {
-            name: 'appointment_hour',
+            name: 'permission_appointment_hour',
             type: 'time',
             isNullable: false,
           },
           {
-            name: 'appointment_device',
+            name: 'permission_appointment_device',
             type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'appointment_company',
+            name: 'permission_appointment_company',
             type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'appointment_operator_tag',
+            name: 'permission_appointment_operator_tag',
             type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'appointment_operator_name',
+            name: 'permission_appointment_vehicle_tag',
             type: 'varchar(50)',
             isNullable: false,
           },
           {
-            name: 'appointment_operator_level',
+            name: 'permission_appointment_permission',
             type: 'varchar(2)',
             isNullable: false,
           },
           {
-            name: 'appointment_vehicle_tag',
-            type: 'varchar(50)',
-            isNullable: false,
-          },
-          {
-            name: 'appointment_vehicle_name',
-            type: 'varchar(50)',
-            isNullable: false,
-          },
-          {
-            name: 'appointment_vehicle_fuel',
-            type: 'varchar(2)',
-            isNullable: false,
-          },
-          {
-            name: 'appointment_fuel_quantity',
-            type: 'numeric(5,2)',
-            isNullable: false,
-          },
-          {
-            name: 'appointment_created_at',
+            name: 'permission_appointment_created_at',
             type: 'timestamp',
             default: 'now()',
           },
           {
-            name: 'appointment_updated_at',
+            name: 'permission_appointment_updated_at',
             type: 'timestamp',
             default: 'now()',
           },
         ],
       }),
-      true,
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('appointments');
+    await queryRunner.dropTable('permissions');
   }
 }

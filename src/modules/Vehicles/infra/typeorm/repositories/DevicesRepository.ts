@@ -50,11 +50,6 @@ class DevicesRepository implements IDeviceRepository {
     });
     return result;
   }
-
-  public async findById(id: string): Promise<Device | undefined> {
-    const device = await this.ormRepository.findOne(id);
-    return device;
-  }
 }
 
 export default DevicesRepository;

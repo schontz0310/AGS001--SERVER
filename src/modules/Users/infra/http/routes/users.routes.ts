@@ -5,7 +5,7 @@ import applicationEnsureAuthenticated from '@shared/infra/http/middlewares/appli
 
 const usersRouter = Router();
 
-usersRouter.use(applicationEnsureAuthenticated)
+usersRouter.use(applicationEnsureAuthenticated);
 
 const usersController = new UsersController();
 
