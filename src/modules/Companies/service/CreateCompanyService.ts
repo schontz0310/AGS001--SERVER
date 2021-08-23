@@ -12,7 +12,7 @@ import ICreateCompaniesDTO from '../dtos/ICreateCompaniesDTO';
 import Company from '../infra/typeorm/entities/Company';
 
 @injectable()
-class CreateUserService {
+class CreateCompanyService {
   constructor(
     @inject('CompaniesRepository')
     private companiesRepository: ICompaniesRepository,
@@ -31,7 +31,7 @@ class CreateUserService {
   public async execute(
     createCompanyData: ICreateCompaniesDTO,
   ): Promise<Company> {
-    const companyAndEmailExist = await this.companiesRepository.CheckExist(
+    const companyAndEmailExist = await this.companiesRepository.checkExist(
       createCompanyData.type_value,
     );
     if (companyAndEmailExist) {
@@ -82,4 +82,4 @@ class CreateUserService {
     return company;
   }
 }
-export default CreateUserService;
+export default CreateCompanyService;

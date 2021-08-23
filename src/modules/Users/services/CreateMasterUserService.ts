@@ -5,7 +5,6 @@ import IMasterUsersRepository from '@modules/Users/repositories/IMasterUsersRepo
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 
 import MasterUser from '@modules/Users/infra/typeorm/entities/UserMaster';
-import { compare } from 'bcryptjs';
 
 interface IRequest {
   name: string;
@@ -30,21 +29,17 @@ class AuthenticateUserService {
     password,
     secret,
   }: IRequest): Promise<MasterUser> {
-    const checkEmailExist = await this.masterUsersRepository.findByEmail(
-      email,
-    );
+    const checkEmailExist = await this.masterUsersRepository.findByEmail(email);
 
     if (checkEmailExist) {
       throw new AppError('email already in use', 401);
     }
-    const secretMatch = secret === authConfig.masterSecret.passwordCreator ? true : false;
+    const secretMatch = secret === authConfig.masterSecret.passwordCreator;
     if (!secretMatch) {
       throw new AppError('Incorrect secret', 401);
     }
 
-    const hashedPassword = await this.hashProvider.generateHash(
-      password,
-    );
+    const hashedPassword = await this.hashProvider.generateHash(password);
 
     const master = await this.masterUsersRepository.create({
       name,

@@ -4,10 +4,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Exclude } from 'class-transformer';
+import Device from '@modules/Devices/infra/typeorm/entities/Devices';
 
 @Entity('companies')
 class Company {
@@ -92,6 +95,14 @@ class Company {
   })
   @Exclude()
   password: string;
+
+  @ManyToMany(() => Device, { eager: true })
+  @JoinTable({
+    name: 'devices-companies',
+    joinColumns: [{ name: 'device_company_company_id' }],
+    inverseJoinColumns: [{ name: 'device_company_device_id' }],
+  })
+  devices: Device[];
 
   @CreateDateColumn({
     name: 'company_created_at',

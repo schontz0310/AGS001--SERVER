@@ -3,18 +3,17 @@
 import { inject, injectable } from 'tsyringe';
 import IDevicesRepository from '@modules/Devices/repositories/IDeviceRepository';
 import Device from '../infra/typeorm/entities/Devices';
-import IUpdateDeviceDTO from '../dtos/IUpdateDeviceDTO';
 
 @injectable()
-class UpdateDeviceService {
+class FindAllDeviceService {
   constructor(
     @inject('DevicesRepository')
     private devicesRepository: IDevicesRepository,
   ) {}
 
-  public async execute(data: IUpdateDeviceDTO): Promise<Device> {
-    const device = await this.devicesRepository.updateDevice(data);
-    return device;
+  public async execute(): Promise<Device[]> {
+    const findAllDevices = await this.devicesRepository.findAllDevices();
+    return findAllDevices;
   }
 }
-export default UpdateDeviceService;
+export default FindAllDeviceService;
