@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { inject, injectable } from 'tsyringe';
 import IDevicesRepository from '@modules/Devices/repositories/IDeviceRepository';
-import Device from '../infra/typeorm/entities/Devices';
+import { IResponseDeviceDTO } from '../dtos/IResponseDeviceDTO';
 
 @injectable()
 class FindAllDeviceService {
@@ -11,9 +11,20 @@ class FindAllDeviceService {
     private devicesRepository: IDevicesRepository,
   ) {}
 
-  public async execute(): Promise<Device[]> {
+  public async execute(): Promise<IResponseDeviceDTO[]> {
     const findAllDevices = await this.devicesRepository.findAllDevices();
-    return findAllDevices;
+    const devices: IResponseDeviceDTO[] = findAllDevices.map(device => {
+      return {
+        code: device.code,
+        id: device.id,
+        model: device.model,
+        status: device.status,
+        variant: device.variant,
+        created_at: device.created_at,
+        updated_at: device.updated_at,
+      };
+    });
+    return devices;
   }
 }
 export default FindAllDeviceService;

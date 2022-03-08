@@ -26,14 +26,14 @@ class DevicesRepository implements IDeviceRepository {
     return device;
   }
 
-  public async findAllDevices(): Promise<Device[] | undefined> {
+  public async findAllDevices(): Promise<Device[] | []> {
     const devices = await this.ormRepository.find();
     return devices;
   }
 
   public async deleteDevice(id: string): Promise<boolean> {
     const { affected } = await this.ormRepository.delete(id);
-    if (affected < 1) {
+    if (!!affected && affected < 1) {
       return false;
     }
     return true;
