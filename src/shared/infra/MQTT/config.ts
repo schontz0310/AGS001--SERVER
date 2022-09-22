@@ -1,6 +1,6 @@
 import { connectAsync, AsyncMqttClient, connect, AsyncClient } from 'async-mqtt';
 import console from 'console';
-import { MqttTopics, MqttTopicsCallBacks, MqttTopicsList } from './topics';
+import { MqttTopicsCallBacks, MqttTopicsList } from './topics';
 
 export async function mqqtConect() {
   try {
@@ -8,14 +8,14 @@ export async function mqqtConect() {
 
     const client: AsyncMqttClient = await connectAsync('mqttServerAGS001', {
       port: 1883,
-      username: 'supply-admin',
-      password: 'supply@19!',
+      username: 'admin',
+      password: 'ags001#2020',
       protocol: 'mqtt',
-      host: 'mqtt.datamills.com.br',
+      host: '3.143.105.105',
     });
     MqttTopicsList.map( async topic => {
       await client.subscribe(`${topic}`, {
-        qos: 2,
+        qos: 0,
       });
     })
     console.log(' ========================================================= ');

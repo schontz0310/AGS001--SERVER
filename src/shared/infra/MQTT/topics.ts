@@ -1,11 +1,10 @@
-import { Console } from "console";
 import { container } from "tsyringe";
-import { TestSubscriber, ExampleSubscriber } from "./subscribes";
+import { TestSubscriber, ExampleSubscriber, RegisterSubscriber } from "./subscribes";
 
 export enum MqttTopics {
   EXAMPLE = "example/", 
   TEST = "teste/",
-  REGISTER = "register/"
+  REGISTER = "registers/"
 }
 
 export const MqttTopicsList: string[] = Object.entries(MqttTopics)
@@ -19,6 +18,10 @@ export const MqttTopicsCallBacks: TopicsCallBacks = {
   [`${MqttTopics.EXAMPLE}`]: async (payload: Buffer) => {
     const exSubscriber = container.resolve(ExampleSubscriber)
     await exSubscriber.run(payload)
+  },
+  [`${MqttTopics.REGISTER}`]: async (payload: Buffer) => {
+    const registerSubscriber = container.resolve(RegisterSubscriber)
+    await registerSubscriber.run(payload)
   }
 }
 
