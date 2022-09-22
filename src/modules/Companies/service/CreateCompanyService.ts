@@ -8,7 +8,7 @@ import IHashProvider from '@shared/container/providers/HashProvider/models/IHash
 import { Transactional } from 'typeorm-transactional-cls-hooked';
 import IUsersRepository from '@modules/Users/repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
-import ICreateCompaniesDTO from '../dtos/ICreateCompaniesDTO';
+import { ICreateCompaniesDTO } from '../dtos/ICreateCompaniesDTO';
 import Company from '../infra/typeorm/entities/Company';
 
 @injectable()
@@ -32,7 +32,7 @@ class CreateCompanyService {
     createCompanyData: ICreateCompaniesDTO,
   ): Promise<Company> {
     const companyAndEmailExist = await this.companiesRepository.checkExist(
-      createCompanyData.type_value,
+      createCompanyData.typeValue,
     );
     if (companyAndEmailExist) {
       throw new AppError('This CNPJ/CPF Already in use', 401);
@@ -68,7 +68,7 @@ class CreateCompanyService {
             name: company.contact,
             company: company.name,
             email: company.email,
-            type_value: company.type_value,
+            typeValue: company.typeValue,
             password: unHashedPassword,
           },
         },

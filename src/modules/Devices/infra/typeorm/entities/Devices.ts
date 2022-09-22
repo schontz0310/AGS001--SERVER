@@ -7,6 +7,7 @@ import {
   PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { DeviceStauts } from './types';
 
 @Entity('devices')
 class Device {
@@ -33,17 +34,19 @@ class Device {
 
   @Column({
     name: 'device_status',
+    enum: DeviceStauts,
+    default: DeviceStauts.PENDING
   })
   status: string;
 
   @CreateDateColumn({
     name: 'device_created_at',
   })
-  created_at: Date;
+  createdAt: Date;
 
   @CreateDateColumn({
     name: 'device_updated_at',
   })
-  updated_at: Date;
+  updatedAt: Date;
 }
 export default Device;

@@ -11,6 +11,9 @@ interface IUploadConfig {
 
   multer: {
     storage: StorageEngine;
+    limits: {
+      fileSize?: number | undefined
+    }
   };
 
   driver: 's3' | 'disk';
@@ -19,6 +22,7 @@ interface IUploadConfig {
     disk: null;
     aws: {
       bucket: string;
+      region: string;
     };
   };
 }
@@ -38,12 +42,14 @@ export default {
         return callback(null, fileName);
       },
     }),
+    limits: 1048576,
   },
 
   config: {
     disk: null,
     aws: {
-      bucket: 'ags-gobarber',
+      bucket: process.env.S3_BUCKET,
+      region: process.env.S3_REGION,
     },
   },
 } as IUploadConfig;

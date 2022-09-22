@@ -1,13 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 
 import CreateDeviceService from '@modules/Devices/service/CreateDeviceService';
 import FindAllDevicesService from '@modules/Devices/service/FindAllDevicesService';
 import DeleteDeviceService from '@modules/Devices/service/DeleteDeviceService';
 import UpdateDeviceService from '@modules/Devices/service/UpdateDeviceService';
-
 import ICreateDeviceDTO from '@modules/Devices/dtos/ICreateDeviceDTO';
 import IUpdateDeviceDTO from '@modules/Devices/dtos/IUpdateDeviceDTO';
 
@@ -16,7 +15,7 @@ export default class DeviceController {
     const createDeviceData: ICreateDeviceDTO = request.body;
     const createDevice = container.resolve(CreateDeviceService);
     const device = await createDevice.execute(createDeviceData);
-    return response.json(classToClass(device));
+    return response.json(instanceToInstance(device));
   }
 
   public async findAllDevices(
@@ -24,8 +23,8 @@ export default class DeviceController {
     response: Response,
   ): Promise<Response> {
     const findAllDevices = container.resolve(FindAllDevicesService);
-    const device = await findAllDevices.execute();
-    return response.json(classToClass(device));
+    const devices = await findAllDevices.execute();
+    return response.json(devices);
   }
 
   public async deleteDevice(
@@ -59,6 +58,6 @@ export default class DeviceController {
 
     const updateDevice = container.resolve(UpdateDeviceService);
     const device = await updateDevice.execute(data);
-    return response.json(classToClass(device));
+    return response.json(instanceToInstance(device));
   }
 }

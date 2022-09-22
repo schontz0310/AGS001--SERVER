@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { inject, injectable } from 'tsyringe';
 import IDevicesRepository from '@modules/Devices/repositories/IDeviceRepository';
-import Device from '../infra/typeorm/entities/Devices';
+import Device from '@modules/Devices/infra/typeorm/entities/Devices';
 
 @injectable()
 class FindAllDeviceService {
