@@ -15,23 +15,29 @@ import IDevicesRepository from '@modules/Devices/repositories/IDeviceRepository'
 import DevicesRepositoryTypeOrm from '@modules/Devices/infra/typeorm/repositories/DevicesRepository';
 import IBankRepository from '@modules/Suppliers/repositories/IBanksRepository';
 import BankRepositoryTypeOrm from '@modules/Suppliers/infra/typeorm/repositories/BankRepository';
+import IAppointmentRepository from '@modules/Appointment/repositories/IAppointmentRepository';
+import { AppointmentRepository } from '@modules/Appointment/infra/typeorm/repositories/AppointmentRepository';
 
-const users = {
-  TypeOrm: UsersRepositoryTypeOrm,
+const repositories = {
+  masterTypeOrm: MasterUsersRepository,
+  userTypeOrm: UsersRepositoryTypeOrm,
+  companyTypeOrm: CompaniesRepositoryTypeOrm,
+  deviceTypeOrm: DevicesRepositoryTypeOrm,
+  bankTypeOrm : BankRepositoryTypeOrm,
+  appointmentOrm: AppointmentRepository
 };
 
-container.registerSingleton<IUsersRepository>('UsersRepository', users.TypeOrm);
+
 
 container.registerSingleton<IMasterUsersRepository>(
   'MasterUsersRepository',
-  MasterUsersRepository,
+  repositories.masterTypeOrm,
 );
 
-const repositories = {
-  companyTypeOrm: CompaniesRepositoryTypeOrm,
-  deviceTypeOrm: DevicesRepositoryTypeOrm,
-  bankTypeOrm : BankRepositoryTypeOrm
-};
+container.registerSingleton<IUsersRepository>(
+  'UsersRepository',
+   repositories.userTypeOrm,
+);
 
 container.registerSingleton<ICompaniesRepository>(
   'CompaniesRepository',
@@ -46,4 +52,9 @@ container.registerSingleton<IDevicesRepository>(
 container.registerSingleton<IBankRepository>(
   'BanksRepository',
   repositories.bankTypeOrm,
+);
+
+container.registerSingleton<IAppointmentRepository>(
+  'AppointmentsRepository',
+  repositories.appointmentOrm,
 );

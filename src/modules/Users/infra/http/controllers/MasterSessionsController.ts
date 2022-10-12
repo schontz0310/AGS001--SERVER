@@ -6,9 +6,7 @@ import AuthenticateMasterUserService from '@modules/Users/services/AuthenticateM
 import { instanceToInstance } from 'class-transformer';
 
 export default class SessionsController {
-  public async index(request: Request, response: Response): Promise<Response> {
-    console.log("aqui");
-    console.log({request})
+  public async index(request: Request, response: Response): Promise<Response> { 
     const { email, password } = request.body;
     const authenticateUser = container.resolve(AuthenticateMasterUserService);
     const { user, token } = await authenticateUser.execute({
