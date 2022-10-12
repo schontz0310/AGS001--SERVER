@@ -7,6 +7,7 @@ export default class AddFieldAvatarToCompanies1645170277840 implements Migration
             name: 'company_avatar',
             type: 'varchar',
             isNullable: true,
+            default: 0
         }))
     }
 

@@ -20,8 +20,8 @@ class FindAllDeviceService {
         model: device.model,
         status: device.status,
         variant: device.variant,
-        created_at: device.created_at,
-        updated_at: device.updated_at,
+        created_at: device.createdAt,
+        updated_at: device.updatedAt,
       };
     });
     return devices;

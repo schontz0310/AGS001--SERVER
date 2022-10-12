@@ -24,7 +24,6 @@ export class AssignDeviceInCompanyService {
     if (!companyExist) {
       throw new AppError('This company not exist', 401);
     }
-
     const deviceExist = await this.devicesRepository.findById(deviceId);
     if (!deviceExist) {
       throw new AppError('This device not exist', 401);
@@ -36,7 +35,7 @@ export class AssignDeviceInCompanyService {
       ...companyExist.devices,
       deviceExist 
     ]
-
+    
     const company = await this.companiesRepository.create(companyExist);
 
     return company;
