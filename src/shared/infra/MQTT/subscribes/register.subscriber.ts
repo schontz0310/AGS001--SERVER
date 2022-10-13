@@ -12,15 +12,11 @@ type NumberKey = {
   [index: number]: () => void;
 }
 
-@injectable()
 export class RegisterSubscriber {
   constructor(
-    @inject('CompaniesRepository')
-    private companiesRepository: ICompaniesRepository,
-    @inject('DevicesRepository')
-    private devicesRepository: IDevicesRepository,
   ) {}
   public async run(payload: Buffer): Promise<void> {
+   console.log({payload})
    const code = Number(JSON.parse(payload.toString()).c)
    console.log({code})
    this.getCode(payload, code)    
@@ -28,16 +24,9 @@ export class RegisterSubscriber {
 
   private async assignDevice(payload: Buffer) {
     try {
-      console.log('registerSub', JSON.parse(payload.toString()))
-      const companie = await this.companiesRepository.checkExist(JSON.parse(payload.toString()).cy)
-      console.log({companie})
-      const device = await this.devicesRepository.CheckExist(JSON.parse(payload.toString()).e)
-      console.log({device})
-      if (!companie?.id||!device?.id) {
-          throw new AppError('This company or Device not exist', 401);
-      }
-      const companyId = companie?.id || "";
-      const deviceId = device?.id || "";
+     
+      const companyId = "";
+      const deviceId = "";
       const assignDeviceParams:IAssignDeviceDTO = {
        companyId,
        deviceId
@@ -52,19 +41,11 @@ export class RegisterSubscriber {
 
   private async fuelCharger(payload: Buffer) {
     try {
-      console.log(JSON.parse(payload.toString()).cy)
-      const companie = await this.companiesRepository.checkExist(JSON.parse(payload.toString()).cy)
-      console.log({companie})
-      const device = await this.devicesRepository.CheckExist(JSON.parse(payload.toString()).e)
-      console.log({device})
-      if (!companie?.id||!device?.id) {
-          throw new AppError('This company or Device not exist', 401);
-      }
       const date = JSON.parse(payload.toString()).d as string
       const createAppointmentParams:ICreateAppointmentDTO = {
         date: date,
         hour: JSON.parse(payload.toString()).h,
-        device: device.code,
+        device: JSON.parse(payload.toString()).e,
         code: JSON.parse(payload.toString()).c,
         operatorTag:JSON.parse(payload.toString()).ot,
         operatorName: JSON.parse(payload.toString()).on,
