@@ -10,8 +10,8 @@ import IDeviceRepository from '@modules/Devices/repositories/IDeviceRepository';
 @injectable()
 class CreateAppointmentService {
   constructor(
-    @inject('AppointmentsRepository')
-    private appointmentRepository: IAppointmentRepository,
+    //@inject('AppointmentsRepository')
+    //private appointmentRepository: IAppointmentRepository,
 
     @inject('DevicesRepository')
     private devicesRepository: IDeviceRepository,
@@ -22,8 +22,9 @@ class CreateAppointmentService {
     if (!deviceExist) {
       throw new AppError('This device not exist', 401);
     }
-    const appointment = await this.appointmentRepository.create(data);
-    return appointment;
+    // const appointment = await this.appointmentRepository.create(data);
+    // return appointment;
+    return {} as Appointment;
   }
 }
 export {CreateAppointmentService};
