@@ -32,6 +32,7 @@ export default class createUsersTable1622506777887
           {
             name: 'user_company_id',
             type: 'uuid',
+            isNullable: false,
           },
           {
             name: 'user_created_at',

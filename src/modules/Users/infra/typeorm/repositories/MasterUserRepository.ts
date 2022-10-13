@@ -1,14 +1,16 @@
-import { getRepository, Repository } from 'typeorm';
+
 import UserMaster from '@modules/Users/infra/typeorm/entities/UserMaster';
 import IMasterUsersRepository from '../../../repositories/IMasterUsersRepository';
 import ICreateMasterUserDTO from '../../../dtos/ICreateMasterUserDTO';
+import { AppDataSource } from 'data-source';
+import { Repository } from 'typeorm';
 
 class UsersMasterRepository implements IMasterUsersRepository {
 
-  private ormRepository: Repository<UserMaster>;
+  private ormRepository: Repository<UserMaster>
 
   constructor() {
-    this.ormRepository = getRepository(UserMaster);
+    this.ormRepository = AppDataSource.getRepository(UserMaster);
   }
 
   public async create({
@@ -26,15 +28,17 @@ class UsersMasterRepository implements IMasterUsersRepository {
     return user;
   }
 
-  public async findByEmail(email: string): Promise<UserMaster | undefined> {
+  public async findByEmail(email: string): Promise<UserMaster | null> {
     const user = await this.ormRepository.findOne({
       where: { email },
     });
     return user;
   }
 
-  public async findById(user_id: string): Promise<UserMaster | undefined> {
-    const user = await this.ormRepository.findOne(user_id);
+  public async findById(id: string): Promise<UserMaster | null> {
+    const user = await this.ormRepository.findOne({
+      where: { id },
+    });
     return user;
   }
 

@@ -11,10 +11,10 @@ import 'express-async-errors';
 import AppError from '@shared/errors/AppError';
 
 import routes from '@shared/infra/http/routes';
+import { mqqtConect } from '../MQTT/config';
 
 import '@shared/infra/database/typeorm';
 import '@shared/container';
-import { mqqtConect } from '../MQTT/config';
 import upload from '@config/upload';
 
 initializeTransactionalContext();

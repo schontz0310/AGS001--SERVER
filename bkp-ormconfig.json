@@ -1,0 +1,19 @@
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "3.143.105.105",
+    "port": 4321,
+    "username": "postgres",
+    "password": "ags001#postgres",
+    "database": "AGS001-DEV",
+    "entities": [
+      "./src/modules/**/infra/typeorm/entities/*{.ts,.js}"
+    ],
+    "migrations": [
+      "./src/shared/infra/database/typeorm/migrations/*.ts"
+    ],
+    "cli": {
+      "migrationsDir": "./src/shared/infra/database/typeorm/migrations"
+    }
+  }
+

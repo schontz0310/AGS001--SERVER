@@ -1,14 +1,15 @@
 import ICreateDeviceDTO from '@modules/Devices/dtos/ICreateDeviceDTO';
 import IUpdateDeviceDTO from '@modules/Devices/dtos/IUpdateDeviceDTO';
 import IDeviceRepository from '@modules/Devices/repositories/IDeviceRepository';
-import { getRepository, Repository } from 'typeorm';
+import { AppDataSource } from 'data-source';
+import { Repository } from 'typeorm';
 import Device from '../entities/Devices';
 
 class DevicesRepository implements IDeviceRepository {
   private ormRepository: Repository<Device>;
 
   constructor() {
-    this.ormRepository = getRepository(Device);
+    this.ormRepository = AppDataSource.getRepository(Device);
   }
 
   public async create(data: ICreateDeviceDTO): Promise<Device> {
@@ -17,7 +18,7 @@ class DevicesRepository implements IDeviceRepository {
     return device;
   }
 
-  public async CheckExist(code: string): Promise<Device | undefined> {
+  public async CheckExist(code: string): Promise<Device | null> {
     const device = await this.ormRepository.findOne({
       where: {
         code,
@@ -51,8 +52,10 @@ class DevicesRepository implements IDeviceRepository {
     return result;
   }
 
-  public async findById(id: string): Promise<Device | undefined> {
-    const device = await this.ormRepository.findOne(id);
+  public async findById(id: string): Promise<Device | null> {
+    const device = await this.ormRepository.findOne({
+      where: { id },
+    });
     return device;
   }
 }

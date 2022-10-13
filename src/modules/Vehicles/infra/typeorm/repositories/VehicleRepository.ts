@@ -1,14 +1,15 @@
 import ICreateDeviceDTO from '@modules/Devices/dtos/ICreateDeviceDTO';
 import IUpdateDeviceDTO from '@modules/Devices/dtos/IUpdateDeviceDTO';
-import IDeviceRepository from '@modules/Devices/repositories/IDeviceRepository';
-import { getRepository, Repository } from 'typeorm';
-import Device from '../entities/Devices';
+import Device from '@modules/Devices/infra/typeorm/entities/Devices';
+import IVehicleRepository from '@modules/Vehicles/repositories/IVehicleRepository';
+import { AppDataSource } from 'data-source';
+import { Repository } from 'typeorm';
 
-class DevicesRepository implements IDeviceRepository {
+class VehicleRepository implements IVehicleRepository {
   private ormRepository: Repository<Device>;
 
   constructor() {
-    this.ormRepository = getRepository(Device);
+    this.ormRepository = AppDataSource.getRepository(Device);
   }
 
   public async create(data: ICreateDeviceDTO): Promise<Device> {
@@ -17,7 +18,7 @@ class DevicesRepository implements IDeviceRepository {
     return device;
   }
 
-  public async CheckExist(code: string): Promise<Device | undefined> {
+  public async CheckExist(code: string): Promise<Device | null> {
     const device = await this.ormRepository.findOne({
       where: {
         code,
@@ -26,14 +27,14 @@ class DevicesRepository implements IDeviceRepository {
     return device;
   }
 
-  public async findAllDevices(): Promise<Device[] | undefined> {
+  public async findAllDevices(): Promise<Device[] | []> {
     const devices = await this.ormRepository.find();
     return devices;
   }
 
   public async deleteDevice(id: string): Promise<boolean> {
     const { affected } = await this.ormRepository.delete(id);
-    if (affected < 1) {
+    if ( affected === undefined ||  affected === null) {
       return false;
     }
     return true;
@@ -52,4 +53,4 @@ class DevicesRepository implements IDeviceRepository {
   }
 }
 
-export default DevicesRepository;
+export default VehicleRepository;
