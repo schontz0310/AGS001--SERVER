@@ -1,7 +1,7 @@
 import ICreateDeviceDTO from '@modules/Devices/dtos/ICreateDeviceDTO';
 import IUpdateDeviceDTO from '@modules/Devices/dtos/IUpdateDeviceDTO';
 import IDeviceRepository from '@modules/Devices/repositories/IDeviceRepository';
-import { AppDataSource } from 'data-source';
+import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
 import { Repository } from 'typeorm';
 import Device from '../entities/Devices';
 

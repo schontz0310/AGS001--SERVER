@@ -1195,7 +1195,7 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/cls-hooked@^4.2.1":
+"@types/cls-hooked@^4.3.3":
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/@types/cls-hooked/-/cls-hooked-4.3.3.tgz#c09e2f8dc62198522eaa18a5b6b873053154bd00"
   integrity sha512-gNstDTb/ty5h6gJd6YpSPgsLX9LmRpaKJqGFp7MRlYxhwp4vXXKlJ9+bt1TZ9KbVNXE+Mbxy2AYXcpY21DDtJw==
@@ -5534,12 +5534,12 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typeorm-transactional-cls-hooked@^0.1.21:
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/typeorm-transactional-cls-hooked/-/typeorm-transactional-cls-hooked-0.1.21.tgz#2128b4ce203770ff926d8953dd2dd6747877b952"
-  integrity sha512-zG5bVvKCAyzedj8TqPnZYaCi9TtAv2kVNmtuZ0GMpyxIHSF6B5RmhAKqUHv3rD7xEhwmaGdMdDc1V77VI9F2Ig==
+typeorm-transactional@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/typeorm-transactional/-/typeorm-transactional-0.2.1.tgz#ef54abec3dcc3638cda27cc56a37f55e71260c14"
+  integrity sha512-tcSr11NOfONNIVQLRHIghPhqe/qQGEdeSPAXrqLC9wOvOOJ66nPxZDHBSJ2T8mEXHnEdvpLVO37xqnJXNZpNLQ==
   dependencies:
-    "@types/cls-hooked" "^4.2.1"
+    "@types/cls-hooked" "^4.3.3"
     cls-hooked "^4.2.2"
 
 typeorm@^0.3.10:

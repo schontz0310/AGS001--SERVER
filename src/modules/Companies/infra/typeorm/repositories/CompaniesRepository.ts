@@ -1,6 +1,6 @@
 import { ICreateCompaniesDTO } from '@modules/Companies/dtos/ICreateCompaniesDTO';
 import ICompanyRepository from '@modules/Companies/repositories/ICompaniesRepository';
-import { AppDataSource } from 'data-source';
+import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
 import { Repository } from 'typeorm';
 import Company from '../entities/Company';
 

@@ -2,8 +2,8 @@
 import UserMaster from '@modules/Users/infra/typeorm/entities/UserMaster';
 import IMasterUsersRepository from '../../../repositories/IMasterUsersRepository';
 import ICreateMasterUserDTO from '../../../dtos/ICreateMasterUserDTO';
-import { AppDataSource } from 'data-source';
 import { Repository } from 'typeorm';
+import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
 
 class UsersMasterRepository implements IMasterUsersRepository {
 
