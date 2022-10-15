@@ -1,13 +1,14 @@
 import { ICreateBankDTO } from '@modules/Suppliers/dtos/ICreateBankDTO';
 import IBankRepository from '@modules/Suppliers/repositories/IBanksRepository';
-import { getRepository, Repository } from 'typeorm';
+import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
+import { Repository } from 'typeorm';
 import Bank from '../entities/Bank';
 
 class BankRepository implements IBankRepository {
   private ormRepository: Repository<Bank>;
 
   constructor() {
-    this.ormRepository = getRepository(Bank);
+    this.ormRepository =  AppDataSource.getRepository(Bank);
   }
 
   public async save(bank: Bank): Promise<Bank> {
@@ -25,7 +26,7 @@ class BankRepository implements IBankRepository {
     return banks;
   }
 
-  public async checkExist(code: number): Promise<Bank | undefined> {
+  public async checkExist(code: number): Promise<Bank | null> {
     const bank = await this.ormRepository.findOne({
       where: {
         code: code,

@@ -4,7 +4,7 @@ import Company from '../infra/typeorm/entities/Company';
 export default interface ICompanyRepository {
   create(data: ICreateCompaniesDTO): Promise<Company>;
   save(company: Company): Promise<Company>;
-  checkExist(typeValue: string): Promise<Company | undefined>;
-  findById(id: string): Promise<Company | undefined>;
+  checkExist(typeValue: string): Promise<Company | null>;
+  findById(id: string): Promise<Company | null >;
   findAll(): Promise<Company[]>;
 }

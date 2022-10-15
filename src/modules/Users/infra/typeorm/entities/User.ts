@@ -39,6 +39,7 @@ class User {
   password: string;
 
   @Column({
+    type: 'uuid',
     name: 'user_company_id',
   })
   company_id: string;

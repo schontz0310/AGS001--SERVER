@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity('banks')
-class Company {
+class Bank {
   @PrimaryGeneratedColumn('uuid')
   @PrimaryColumn({
     name: 'bank_id',
@@ -38,4 +38,4 @@ class Company {
   updatedAt: Date;
 
 }
-export default Company;
+export default Bank;

@@ -1,15 +1,14 @@
 import ICreateAppointmentDTO from '@modules/Appointment/dtos/ICreateAppointmentDTO';
 import IAppointmentRepository from '@modules/Appointment/repositories/IAppointmentRepository';
-import ICreateDeviceDTO from '@modules/Devices/dtos/ICreateDeviceDTO';
-import IUpdateDeviceDTO from '@modules/Devices/dtos/IUpdateDeviceDTO';
-import { getRepository, Repository } from 'typeorm';
+import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
+import { Repository } from 'typeorm';
 import Appointment from '../entities/Appointment';
 
 class AppointmentRepository implements IAppointmentRepository {
   private ormRepository: Repository<Appointment>;
 
   constructor() {
-    this.ormRepository = getRepository(Appointment);
+    this.ormRepository = AppDataSource.getRepository(Appointment);
   }
 
   public async create(data: ICreateAppointmentDTO): Promise<Appointment> {

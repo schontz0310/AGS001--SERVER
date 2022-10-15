@@ -1,3 +1,7 @@
-import { createConnections } from 'typeorm';
+import { AppDataSource } from "./data-source";
 
-createConnections();
+try {
+  AppDataSource.initialize()
+} catch (error) {
+  console.log({error});
+}

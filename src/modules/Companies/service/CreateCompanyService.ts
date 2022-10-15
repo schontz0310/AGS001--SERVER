@@ -5,11 +5,11 @@ import path from 'path';
 import ICompaniesRepository from '@modules/Companies/repositories/ICompaniesRepository';
 import AppError from '@shared/errors/AppError';
 import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
-import { Transactional } from 'typeorm-transactional-cls-hooked';
 import IUsersRepository from '@modules/Users/repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import { ICreateCompaniesDTO } from '../dtos/ICreateCompaniesDTO';
 import Company from '../infra/typeorm/entities/Company';
+import { Transactional } from 'typeorm-transactional';
 
 @injectable()
 class CreateCompanyService {
