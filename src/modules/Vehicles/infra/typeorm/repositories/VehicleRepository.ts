@@ -2,7 +2,7 @@ import ICreateDeviceDTO from '@modules/Devices/dtos/ICreateDeviceDTO';
 import IUpdateDeviceDTO from '@modules/Devices/dtos/IUpdateDeviceDTO';
 import Device from '@modules/Devices/infra/typeorm/entities/Devices';
 import IVehicleRepository from '@modules/Vehicles/repositories/IVehicleRepository';
-import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
+import { AppDataSource } from '@shared/infra/http/database/typeorm/data-source';
 import { Repository } from 'typeorm';
 
 class VehicleRepository implements IVehicleRepository {

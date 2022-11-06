@@ -1,6 +1,6 @@
 import ICreateAppointmentDTO from '@modules/Appointment/dtos/ICreateAppointmentDTO';
 import IAppointmentRepository from '@modules/Appointment/repositories/IAppointmentRepository';
-import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
+import { AppDataSource } from '@shared/infra/http/database/typeorm/data-source';
 import { Repository } from 'typeorm';
 import Appointment from '../entities/Appointment';
 

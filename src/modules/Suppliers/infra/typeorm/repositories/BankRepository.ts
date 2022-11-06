@@ -1,6 +1,6 @@
 import { ICreateBankDTO } from '@modules/Suppliers/dtos/ICreateBankDTO';
 import IBankRepository from '@modules/Suppliers/repositories/IBanksRepository';
-import { AppDataSource } from '@shared/infra/database/typeorm/data-source';
+import { AppDataSource } from '@shared/infra/http/database/typeorm/data-source';
 import { Repository } from 'typeorm';
 import Bank from '../entities/Bank';
 

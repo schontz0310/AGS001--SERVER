@@ -10,10 +10,10 @@ import AppError from '@shared/errors/AppError';
 import routes from '@shared/infra/http/routes';
 import { mqqtConect } from '../MQTT/config';
 
-import '@shared/infra/database/typeorm';
+import '@shared/infra/http/database/typeorm';
 import '@shared/container';
 import upload from '@config/upload';
-import { AppDataSource } from '../database/typeorm/data-source';
+import { AppDataSource } from './database/typeorm/data-source';
 
 initializeTransactionalContext()
 addTransactionalDataSource(AppDataSource);
