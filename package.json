@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node dist/shared/infra/http/server.js",
-    "typeorm:dev": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/infra/database/typeorm/data-source.ts",
+    "typeorm:dev": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d ./src/shared/infra/http/database/typeorm/data-source.ts",
     "typeorm:prd": "./node_modules/typeorm/cli.js -d ./dist/shared/infra/database/typeorm/data-source.js",
     "knex:Mrun": "knex migrate:latest --knexfile src/shared/infra/database/knex/knexfile.ts migrate:latest",
     "knex:Mcreate": "knex migrate:make --knexfile src/shared/infra/database/knex/knexfile.ts",
