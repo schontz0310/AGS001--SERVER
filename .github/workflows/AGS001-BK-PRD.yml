@@ -30,7 +30,7 @@ jobs:
             port: ${{secrets.SSH_PORT}}
             key: ${{secrets.SSH_KEY}}
             source: ".,!node_modules"
-            target: "~/backend/server"
+            target: "../home/infra/backend/server"
       
       -  name: Copy file from s3
          uses: prewk/s3-cp-action@v2
