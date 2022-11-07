@@ -2,7 +2,7 @@
 name: CI
 on:
   push:
-    branches: [ production ]
+    branches: [ developer ]
     
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
       -  name: Copy disto do Digital Ocean
          uses: appleboy/scp-action@master
          with:
-            host: ${{secrets.SSH_HOST_PRD}}
+            host: ${{secrets.SSH_HOST}}
             username: ${{secrets.SSH_USER}}
             port: ${{secrets.SSH_PORT}}
             key: ${{secrets.SSH_KEY}}
@@ -46,7 +46,7 @@ jobs:
       -  name: Run production scripts
          uses: appleboy/ssh-action@master
          with:
-            host: ${{secrets.SSH_HOST_PRD}}
+            host: ${{secrets.SSH_HOST}}
             username: ${{secrets.SSH_USER}}
             port: ${{secrets.SSH_PORT}}
             key: ${{secrets.SSH_KEY}}
