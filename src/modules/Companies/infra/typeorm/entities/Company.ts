@@ -126,7 +126,7 @@ class Company {
     }
     switch (upload.driver) {
       case 'disk':
-        return `${process.env.APP_API_URL}/${process.env.APP_API_PATH_STATIC_FILES}/${this.avatar}`
+        return `${process.env.APP_LOCAL_STATIC_FILES_PATH_URL}/${process.env.APP_API_PATH_STATIC_FILES}/${this.avatar}`
       case 's3':
         return `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/${this.avatar}`
       default:
