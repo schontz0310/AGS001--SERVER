@@ -52,8 +52,4 @@ jobs:
               cd ~/backend/server
               yarn
               yarn typeorm:prd migration:run
-              pm2 restart ags001-api
-            
-            
-            
-         
+              pm2 restart ags001-server-node
