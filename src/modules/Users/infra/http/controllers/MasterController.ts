@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateMasterUserService from '@modules/Users/services/CreateMasterUserService';
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 
 interface ICreateMasterUser {
   name: string;
@@ -24,6 +24,6 @@ export default class MasterController {
       password,
       secret,
     });
-    return response.json(classToClass(master));
+    return response.json(instanceToInstance(master));
   }
 }

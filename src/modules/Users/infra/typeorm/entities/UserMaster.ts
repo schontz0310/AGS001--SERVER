@@ -7,12 +7,9 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryColumn,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
-import Company from '@modules/Companies/infra/typeorm/entities/Company';
 
 @Entity('users_master')
 class UserMaster {

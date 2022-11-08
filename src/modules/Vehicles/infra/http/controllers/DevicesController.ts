@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-import { classToClass } from 'class-transformer';
+import { instanceToInstance } from 'class-transformer';
 import CreateDeviceService from '@modules/Devices/service/CreateDeviceService';
 import FindAllDevicesService from '@modules/Devices/service/FindAllDevicesService';
 import DeleteDeviceService from '@modules/Devices/service/DeleteDeviceService';
@@ -14,7 +14,7 @@ export default class DeviceController {
     const createDeviceData: ICreateDeviceDTO = request.body;
     const createDevice = container.resolve(CreateDeviceService);
     const device = await createDevice.execute(createDeviceData);
-    return response.json(classToClass(device));
+    return response.json(instanceToInstance(device));
   }
 
   public async findAllDevices(
@@ -23,7 +23,7 @@ export default class DeviceController {
   ): Promise<Response> {
     const findAllDevices = container.resolve(FindAllDevicesService);
     const device = await findAllDevices.execute();
-    return response.json(classToClass(device));
+    return response.json(instanceToInstance(device));
   }
 
   public async deleteDevice(
@@ -57,6 +57,6 @@ export default class DeviceController {
 
     const updateDevice = container.resolve(UpdateDeviceService);
     const device = await updateDevice.execute(data);
-    return response.json(classToClass(device));
+    return response.json(instanceToInstance(device));
   }
 }

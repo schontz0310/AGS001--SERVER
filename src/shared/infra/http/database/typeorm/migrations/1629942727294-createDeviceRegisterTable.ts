@@ -1,57 +1,53 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class createUsersTable1622506777887
+export default class createDeviceRegisterTable1629942727294
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'users',
+        name: 'register-device',
         columns: [
           {
-            name: 'user_id',
+            name: 'register_device_id',
             type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'user_name',
-            type: 'varchar',
+            name: 'register_device_code',
+            type: 'smallint',
             isNullable: false,
           },
           {
-            name: 'user_email',
-            type: 'varchar',
+            name: 'register_device_date',
+            type: 'date',
             isNullable: false,
           },
           {
-            name: 'user_password',
-            type: 'varchar',
+            name: 'register_device_hour',
+            type: 'time',
             isNullable: false,
           },
           {
-            name: 'user_company_id',
-            type: 'uuid',
+            name: 'register_device_device',
+            type: 'varchar(50)',
+            isNullable: false,
           },
           {
-            name: 'user_created_at',
+            name: 'register_device_company',
+            type: 'varchar(50)',
+            isNullable: false,
+          },
+          {
+            name: 'register_device_created_at',
             type: 'timestamp',
             default: 'now()',
           },
           {
-            name: 'user_updated_at',
+            name: 'register_device_updated_at',
             type: 'timestamp',
             default: 'now()',
-          },
-        ],
-        foreignKeys: [
-          {
-            name: 'UserCompany',
-            referencedTableName: 'companies',
-            referencedColumnNames: ['company_id'],
-            columnNames: ['user_company_id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
           },
         ],
       }),
@@ -59,6 +55,6 @@ export default class createUsersTable1622506777887
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users');
+    await queryRunner.dropTable('register-device');
   }
 }

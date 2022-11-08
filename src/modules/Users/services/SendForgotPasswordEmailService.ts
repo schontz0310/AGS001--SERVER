@@ -7,6 +7,7 @@ import IUserTokensRepository from '@modules/Users/repositories/IUserTokensReposi
 
 interface IRequest {
   email: string;
+  company: string;
 }
 @injectable()
 class SendForgotPasswordEmailService {
@@ -22,7 +23,7 @@ class SendForgotPasswordEmailService {
   ) {}
 
   public async execute(data: IRequest): Promise<void> {
-    const user = await this.usersRepository.findByEmail(data.email);
+    const user = await this.usersRepository.findByEmailAndCompany(data.email, data.company);
 
     if (!user) {
       throw new AppError('User does not Exist');

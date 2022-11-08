@@ -10,7 +10,9 @@ class DiskStorageProvider implements IStorageProvider {
   private client: S3;
 
   constructor() {
-    this.client = new aws.S3({});
+    this.client = new aws.S3({
+      region: uploadConfig.config.aws.region
+    });
   }
 
   public async saveFile(file: string): Promise<string> {

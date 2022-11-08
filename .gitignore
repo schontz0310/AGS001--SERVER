@@ -5,3 +5,7 @@ ormconfig.json
 .vscode
 yarn-error.log
 yarn.lock
+dist
+
+tmp/*
+!tmp/.gitkeep

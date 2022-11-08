@@ -16,7 +16,7 @@ export default class createAppointmentsTable1626396156438
           },
           {
             name: 'appointment_code',
-            type: 'smallint',
+            type: 'varchar(5)',
             isNullable: false,
           },
           {

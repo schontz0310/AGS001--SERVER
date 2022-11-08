@@ -5,11 +5,11 @@ import ICompaniesRepository from '@modules/Companies/repositories/ICompaniesRepo
 import IDevicesRepository from '@modules/Devices/repositories/IDeviceRepository';
 import AppError from '@shared/errors/AppError';
 import IAssignDeviceDTO from '@modules/Devices/dtos/IAssignDeviceDTO';
-import Device from '@modules/Devices/infra/typeorm/entities/Devices';
 import Company from '../infra/typeorm/entities/Company';
+import { DeviceStauts } from '@modules/Devices/infra/typeorm/entities/types';
 
 @injectable()
-class CreateCompanyService {
+export class AssignDeviceInCompanyService {
   constructor(
     @inject('CompaniesRepository')
     private companiesRepository: ICompaniesRepository,
@@ -24,23 +24,20 @@ class CreateCompanyService {
     if (!companyExist) {
       throw new AppError('This company not exist', 401);
     }
-
     const deviceExist = await this.devicesRepository.findById(deviceId);
     if (!deviceExist) {
-      throw new AppError('This device already assigned', 401);
+      throw new AppError('This device not exist', 401);
     }
-    let devices: Device[] = [];
-    if (companyExist.devices.length > 0) {
-      devices = companyExist.devices.map(item => item);
+    if (deviceExist.status === DeviceStauts.ACTIVE ) {
+      throw new AppError('This device already in use', 401);
     }
-
-    devices.push(deviceExist);
-
-    companyExist.devices = devices;
-
+    companyExist.devices = [
+      ...companyExist.devices,
+      deviceExist 
+    ]
+    
     const company = await this.companiesRepository.create(companyExist);
 
     return company;
   }
 }
-export default CreateCompanyService;
